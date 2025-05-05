@@ -1,5 +1,6 @@
 from fastapi import Depends, FastAPI, HTTPException
 
+from src.actions import some_tag
 from src.utils import verify_api_key
 from src import logging
 from src.schemas import (
@@ -24,6 +25,8 @@ async def dialogflow_webhook(
         tag = webhook_request.fulfillmentInfo.tag
         if tag == "defaultWelcomeIntent":
             return await default_welcome_intent(webhook_request=webhook_request)
+        elif tag == "someTag":
+            return await some_tag(webhook_request=webhook_request)
         else:
             return WebhookResponse(
                 fulfillmentResponse=FulfillmentResponse(
