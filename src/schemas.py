@@ -56,10 +56,10 @@ class Message(BaseModel):
 class WebhookRequest(BaseModel):
     detectIntentResponseId: str
     languageCode: str
-    fulfillmentInfo: FulfillmentInfo
-    intentInfo: IntentInfo
-    pageInfo: PageInfo
-    sessionInfo: SessionInfo
+    fulfillmentInfo: FulfillmentInfo | None = None
+    intentInfo: IntentInfo | None = None
+    pageInfo: PageInfo | None = None
+    sessionInfo: SessionInfo | None = None
     messages: List[Message] | None = None
     payload: Dict[str, Any] | None = None
     text: str
